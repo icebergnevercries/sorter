@@ -1,30 +1,44 @@
 class Sorter {
   constructor() {
-    // your implementation
+    this.mass=[];
+    this.CompareFun = function(left, right){
+      return left-right;
+    };/*default CompareFun*/
   }
 
   add(element) {
-    // your implementation
+    this.mass.push(element);
   }
 
   at(index) {
-    // your implementation
+    return this.mass[index];/*return an array element by index*/
   }
 
   get length() {
-    // your implementation
+    return this.mass.length;/*return the length of the array*/
   }
 
   toArray() {
-    // your implementation
+    return this.mass;/*return an array*/
   }
 
   sort(indices) {
-    // your implementation
+    var massforsort = [];
+    for(var i = 0; i < indices.length; i++)
+    {
+      massforsort.push(this.mass[indices[i]]);/*array of elements for sorting*/
+    }
+    massforsort.sort(this.CompareFun);/*sorting elements in an array*/
+    indices.sort();/*sorting index*/    
+    for(var i = 0; i < indices.length; i++)
+    {
+      this.mass[indices[i]] = massforsort[i];/*re-write the elements for sorting in sorted form*/
+    }    
+    return this.mass;
   }
 
   setComparator(compareFunction) {
-    // your implementation
+    this.CompareFun = compareFunction;/*the change function CompareFun*/
   }
 }
 
